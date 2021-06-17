@@ -1,6 +1,6 @@
 import { Flex, Text, HStack, useBreakpointValue } from '@chakra-ui/react';
 
-import { Info } from '../Info';
+import { Info } from './Info';
 
 interface ContinentInfoProps {
   description: string;
@@ -50,7 +50,9 @@ export function ContinentInfo({
         paddingX="10"
       >
         <Info caption="countries" total={countries} />
+
         <Info caption="languages" total={languages} />
+
         <Info caption="cities +100" total={cities} hasTooltip />
       </HStack>
     </Flex>

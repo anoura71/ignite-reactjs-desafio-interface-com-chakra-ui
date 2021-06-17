@@ -1,7 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-import { Box, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid, useBreakpointValue } from '@chakra-ui/react';
 
+import { CityCard } from '../../components/CityCard';
 import { ContinentBanner } from '../../components/ContinentBanner';
 import { ContinentInfo } from '../../components/ContinentInfo';
 import { Header } from '../../components/Header';
@@ -43,6 +44,33 @@ export default function ContinentDetail({ continent }: ContinentDetailProps) {
           languages={continent.total_languages}
           cities={continent.cities.length}
         />
+
+        <Box>
+          <Heading
+            as="h1"
+            fontWeight="500"
+            fontSize={['2xl', '4xl']}
+            color="gray.600"
+          >
+            Cidades +100
+          </Heading>
+
+          <SimpleGrid
+            columns={[1, 2, 3, 4, 5]}
+            spacing={[5, 6, 8, 10, 12]}
+            marginY={['5', '5', '32px', '45px', '45px']}
+          >
+            {continent.cities.map((city) => (
+              <CityCard
+                key={city.id}
+                cityName={city.cityName}
+                countryCode={city.countryCode}
+                countryName={city.countryName}
+                imageUrl={city.imageUrl}
+              />
+            ))}
+          </SimpleGrid>
+        </Box>
       </Box>
     </Box>
   );

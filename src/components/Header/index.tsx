@@ -53,7 +53,7 @@ export function Header({ hasBackButton = false }: HeaderProps) {
         </Link>
       )}
 
-      <Image src="assets/Logo.svg" alt="WorldTrip" width={logoWidth} />
+      <Image src="/assets/Logo.svg" alt="WorldTrip" width={logoWidth} />
     </Center>
   );
 }

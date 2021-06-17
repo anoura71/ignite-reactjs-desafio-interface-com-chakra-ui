@@ -13,7 +13,7 @@ export function ContinentBanner({
 }: BannerContinentProps) {
   return (
     <Box
-      height={['150', '225', '300', '400', '500']}
+      height={['150', '225', '300', '400', '400']}
       backgroundImage={`url(${bannerUrl})`}
       backgroundPosition="center"
       backgroundSize="cover"
@@ -30,7 +30,7 @@ export function ContinentBanner({
           <Heading
             as="h1"
             fontWeight="600"
-            fontSize="5xl"
+            fontSize={['', '', '4xl', '5xl', '7xl']}
             color="gray.50"
             position="absolute"
             bottom="60px"
@@ -40,7 +40,12 @@ export function ContinentBanner({
           </Heading>
         ) : (
           <Center width="100%" height="100%">
-            <Text as="h1" fontWeight="600" fontSize="1.75rem" color="gray.50">
+            <Text
+              as="h1"
+              fontWeight="600"
+              fontSize={['1.75rem', '2rem']}
+              color="gray.50"
+            >
               {name}
             </Text>
           </Center>

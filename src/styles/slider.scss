@@ -25,6 +25,10 @@
     @media only screen and (max-width: 48em) {
       right: 16px;
     }
+
+    &:hover {
+      color: rgba(255, 186, 0, 0.5);
+    }
   }
   
   .swiper-button-prev {
@@ -36,6 +40,10 @@
       &::after {
         margin-top: 3px;
       }
+    }
+
+    &:hover {
+      color: rgba(255, 186, 0, 0.5);
     }
   }
   
