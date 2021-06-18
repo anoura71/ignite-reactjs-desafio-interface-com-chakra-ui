@@ -2,6 +2,7 @@
 import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useContinents } from '../../contexts/ContinentsContext';
 import { Continent } from '../../types/Continent';
 import { SliderItem } from './SliderItem';
 
@@ -14,9 +15,12 @@ SwiperCore.use([Navigation, Pagination]);
 
 interface SliderProps {
   continents: Continent[];
+  initialSlide: number;
 }
 
-export function Slider({ continents }: SliderProps) {
+export function Slider({ continents, initialSlide }: SliderProps) {
+  const { handleSelectContinent } = useContinents();
+
   return (
     <Swiper
       navigation
@@ -24,6 +28,8 @@ export function Slider({ continents }: SliderProps) {
       pagination={{ clickable: true }}
       grabCursor
       style={{ flex: '1', width: '100%', height: '100%' }}
+      onSlideChange={(swiper) => handleSelectContinent(swiper.activeIndex + 1)}
+      initialSlide={initialSlide}
     >
       <>
         {continents.map((continent) => (

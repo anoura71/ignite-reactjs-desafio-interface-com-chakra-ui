@@ -52,7 +52,7 @@ export default function ContinentDetail({ continent }: ContinentDetailProps) {
             fontSize={['2xl', '4xl']}
             color="gray.600"
           >
-            Cidades +100
+            Cities +100
           </Heading>
 
           <SimpleGrid
@@ -61,13 +61,7 @@ export default function ContinentDetail({ continent }: ContinentDetailProps) {
             marginY={['5', '5', '32px', '45px', '45px']}
           >
             {continent.cities.map((city) => (
-              <CityCard
-                key={city.id}
-                cityName={city.cityName}
-                countryCode={city.countryCode}
-                countryName={city.countryName}
-                imageUrl={city.imageUrl}
-              />
+              <CityCard key={city.id} city={city} />
             ))}
           </SimpleGrid>
         </Box>

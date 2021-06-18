@@ -1,19 +1,19 @@
 # test directories
-__tests__
-test
-tests
-powered-test
+#__tests__
+#test
+#tests
+#powered-test
 
 # asset directories
-docs
-doc
-website
-images
-assets
+#docs
+#doc
+#website
+#images
+#assets
 
 # examples
-example
-examples
+#example
+#examples
 
 # code coverage directories
 coverage
@@ -32,9 +32,9 @@ codeship-steps.yml
 wercker.yml
 .tern-project
 .gitattributes
-.editorconfig
-.*ignore
-.eslintrc
+#.editorconfig
+#.*ignore
+#.eslintrc
 .jshintrc
 .flowconfig
 .documentup.json
@@ -42,4 +42,4 @@ wercker.yml
 .travis.yml
 
 # misc
-*.md
+#*.md

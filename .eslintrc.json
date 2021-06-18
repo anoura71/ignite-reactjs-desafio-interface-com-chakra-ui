@@ -77,6 +77,11 @@
         ]
       }
     ],
+    "no-empty": "off",
+    "no-nested-ternary": "warn",
+    "no-unused-vars": [
+      "warn"
+    ],
     "prettier/prettier": [
       "error",
       {},
@@ -84,6 +89,7 @@
         "usePrettierrc": true
       }
     ],
+    "react/destructuring-assignment": "off",
     "react/jsx-closing-bracket-location": [
       "error",
       "tag-aligned"
@@ -100,6 +106,13 @@
     "react/jsx-first-prop-new-line": [
       "error",
       "multiline"
+    ],
+    "react/jsx-indent": [
+      "warn",
+      2,
+      {
+        "checkAttributes": true
+      }
     ],
     "react/jsx-indent-props": [
       "error",

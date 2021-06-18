@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { HomeBanner } from '../components/HomeBanner';
 import { Slider } from '../components/Slider';
 import { TravelTypes } from '../components/TravelTypes';
+import { useContinents } from '../contexts/ContinentsContext';
 import { api } from '../services/api';
 import { Continent } from '../types/Continent';
 
@@ -14,6 +15,8 @@ interface HomeProps {
 }
 
 export default function Home({ continents }: HomeProps) {
+  const { currentContinentId } = useContinents();
+
   return (
     <Box>
       <Header />
@@ -41,7 +44,10 @@ export default function Home({ continents }: HomeProps) {
         </Heading>
 
         <Box flex={1} width="100%" height={['250', '320', '480', '640', '768']}>
-          <Slider continents={continents} />
+          <Slider
+            continents={continents}
+            initialSlide={currentContinentId - 1}
+          />
         </Box>
       </Box>
     </Box>
