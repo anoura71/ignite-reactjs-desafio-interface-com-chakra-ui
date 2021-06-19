@@ -39,35 +39,54 @@ export function CityModalContent({ city }: CityModalContentProps) {
         <ModalHeader>
           <Flex
             direction="row"
-            alignItems="center"
+            alignItems="start"
             fontFamily="Barlow"
             fontWeight="600"
           >
-            <ReactCountryFlag
-              style={{
-                fontSize: '2em',
-                lineHeight: '2em',
-                borderRadius: '50%',
-                objectFit: 'cover',
-                marginRight: '10px',
-              }}
-              aria-label={city.countryName}
-              countryCode={city.countryCode}
-              svg
-            />
+            <Flex alignItems="center">
+              <ReactCountryFlag
+                style={{
+                  fontSize: '2em',
+                  lineHeight: '2em',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  marginRight: '10px',
+                }}
+                aria-label={city.countryName}
+                countryCode={city.countryCode}
+                svg
+              />
 
-            <Flex direction="column">
-              <Text fontSize={['md', 'lg', 'xl', '2xl', '3xl']}>
-                {city.cityName}
+              <Flex direction="column">
+                <Text fontSize={['md', 'lg', 'xl', '2xl', '3xl']}>
+                  {city.cityName}
+                </Text>
+
+                <Text
+                  color="gray.500"
+                  fontFamily="Barlow"
+                  fontWeight="500"
+                  fontSize={['sm', 'md', 'lg', 'xl', '2xl']}
+                >
+                  {city.countryName}
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Flex direction="column" alignItems="center" margin="auto">
+              <Text
+                fontSize={['md', 'lg', 'xl', '2xl', '3xl']}
+                fontWeight="500"
+                color="gray.400"
+              >
+                Rank
               </Text>
 
               <Text
-                color="gray.500"
-                fontFamily="Barlow"
-                fontWeight="500"
-                fontSize={['sm', 'md', 'lg', 'xl', '2xl']}
+                fontSize={['lg', 'xl', '2xl', '3xl', '4xl']}
+                color="yellow.500"
               >
-                {city.countryName}
+                {city.rank}
               </Text>
             </Flex>
           </Flex>
