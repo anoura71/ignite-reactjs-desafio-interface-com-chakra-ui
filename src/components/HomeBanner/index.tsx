@@ -1,17 +1,10 @@
-import { Flex, Image, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Image } from '@chakra-ui/react';
 
+import { useScreen } from '../../contexts/ScreenContext';
 import { HomeBannerText } from './HomeBannerText';
 
 export function HomeBanner() {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
-
-  const isWideVersion = screenMode === 'wide' || screenMode === 'desktop';
+  const { isWideVersion } = useScreen();
 
   return (
     <Flex

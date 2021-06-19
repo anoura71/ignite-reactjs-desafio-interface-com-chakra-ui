@@ -1,28 +1,16 @@
 import Link from 'next/link';
 import { FiChevronLeft } from 'react-icons/fi';
 
-import {
-  Center,
-  Icon,
-  Image,
-  Link as ChakraLink,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Center, Icon, Image, Link as ChakraLink } from '@chakra-ui/react';
+
+import { useScreen } from '../../contexts/ScreenContext';
 
 interface HeaderProps {
   hasBackButton?: boolean;
 }
 
 export function Header({ hasBackButton = false }: HeaderProps) {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
-
-  const isWideVersion = screenMode === 'wide' || screenMode === 'desktop';
+  const { isWideVersion, screenMode } = useScreen();
 
   let logoWidth = '82px';
   if (screenMode === 'tablet') {

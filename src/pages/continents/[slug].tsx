@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
-import { Box, Heading, SimpleGrid, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 
 import { CityCard } from '../../components/CityCard';
 import { ContinentBanner } from '../../components/ContinentBanner';
@@ -14,28 +14,11 @@ interface ContinentDetailProps {
 }
 
 export default function ContinentDetail({ continent }: ContinentDetailProps) {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
-
-  const isWideVersion =
-    screenMode === 'wide' ||
-    screenMode === 'desktop' ||
-    screenMode === 'tablet';
-
   return (
     <Box>
       <Header hasBackButton />
 
-      <ContinentBanner
-        bannerUrl={continent.bannerUrl}
-        name={continent.name}
-        isWideVersion={isWideVersion}
-      />
+      <ContinentBanner bannerUrl={continent.bannerUrl} name={continent.name} />
 
       <Box maxWidth="1920" height="100%" marginX="auto" paddingX={['4', '10']}>
         <ContinentInfo

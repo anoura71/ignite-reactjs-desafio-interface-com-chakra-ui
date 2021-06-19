@@ -1,6 +1,8 @@
 import { FaCircle } from 'react-icons/fa';
 
-import { Flex, Icon, Image, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Icon, Image, Text } from '@chakra-ui/react';
+
+import { useScreen } from '../../contexts/ScreenContext';
 
 interface TravelTypeProps {
   text: string;
@@ -15,13 +17,7 @@ export function TravelType({
   alt,
   isLastChild = false,
 }: TravelTypeProps) {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
+  const { screenMode } = useScreen();
 
   return (
     <>

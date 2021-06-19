@@ -7,31 +7,28 @@ import {
   Heading,
   Icon,
   Image,
-  Text,
-  useBreakpointValue,
+  Link as ChakraLink,
+  Modal,
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverArrow,
   PopoverBody,
+  Text,
+  useDisclosure,
 } from '@chakra-ui/react';
 
+import { useScreen } from '../../contexts/ScreenContext';
 import { City } from '../../types/City';
+import { CityModalContent } from '../CityModalContent';
 
 interface CityCardProps {
   city: City;
 }
 
 export function CityCard({ city }: CityCardProps) {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
-
-  const isWideVersion = screenMode === 'wide' || screenMode === 'desktop';
+  const { isWideVersion, screenMode } = useScreen();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   let rankChangeIcon = <Icon as={FiMinus} />;
   if (city.rank_change > 0) {
@@ -40,16 +37,40 @@ export function CityCard({ city }: CityCardProps) {
     rankChangeIcon = <Icon as={FiChevronsDown} />;
   }
 
+  let modalSize: string;
+  switch (screenMode) {
+    case 'wide':
+      modalSize = '3xl';
+      break;
+    case 'desktop':
+      modalSize = '2xl';
+      break;
+    case 'tablet':
+      modalSize = 'xl';
+      break;
+    case 'phablet':
+      modalSize = 'md';
+      break;
+    default:
+      modalSize = 'xs';
+  }
+
   return (
     <Box flexDirection="column">
-      <Image
-        borderTopRadius="4"
-        src={city.imageUrl}
-        alt={city.cityName}
-        width="100%"
-        height="173"
-        objectFit="cover"
-      />
+      <ChakraLink onClick={onOpen}>
+        <Image
+          borderTopRadius="4"
+          src={city.imageUrl}
+          alt={city.cityName}
+          width="100%"
+          height="173"
+          objectFit="cover"
+        />
+      </ChakraLink>
+
+      <Modal isOpen={isOpen} onClose={onClose} size={modalSize}>
+        <CityModalContent city={city} />
+      </Modal>
 
       <Flex
         justify="space-between"

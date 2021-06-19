@@ -1,15 +1,10 @@
-import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 
+import { useScreen } from '../../contexts/ScreenContext';
 import { TravelType } from './TravelType';
 
 export function TravelTypes() {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
+  const { screenMode } = useScreen();
 
   const wrapValue =
     screenMode === 'wide' || screenMode === 'desktop' ? 'nowrap' : 'wrap';

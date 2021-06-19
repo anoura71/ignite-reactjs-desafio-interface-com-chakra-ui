@@ -1,12 +1,8 @@
 import { FiInfo } from 'react-icons/fi';
 
-import {
-  Flex,
-  Icon,
-  Text,
-  Tooltip,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Flex, Icon, Text, Tooltip } from '@chakra-ui/react';
+
+import { useScreen } from '../../contexts/ScreenContext';
 
 interface InfoProps {
   total: number;
@@ -15,21 +11,13 @@ interface InfoProps {
 }
 
 export function Info({ total, caption, hasTooltip = false }: InfoProps) {
-  const screenMode = useBreakpointValue({
-    base: 'mobile',
-    sm: 'phablet',
-    md: 'tablet',
-    lg: 'desktop',
-    xl: 'wide',
-  });
-
-  const isWideVersion = screenMode === 'wide' || screenMode === 'desktop';
+  const { isWideVersion, screenMode } = useScreen();
 
   return (
     <Flex
       direction="column"
-      align={isWideVersion ? 'center' : 'flex-start'}
-      paddingX={['0', '2']}
+      align={screenMode === 'wide' ? 'center' : 'flex-start'}
+      paddingX={isWideVersion ? '2' : '0'}
     >
       <Text
         as="span"
@@ -41,7 +29,7 @@ export function Info({ total, caption, hasTooltip = false }: InfoProps) {
       </Text>
 
       {hasTooltip ? (
-        <Flex align="center">
+        <Flex alignItems="center">
           <Text
             fontSize={isWideVersion ? '2xl' : 'lg'}
             fontWeight={isWideVersion ? '600' : '400'}
@@ -69,7 +57,7 @@ export function Info({ total, caption, hasTooltip = false }: InfoProps) {
         <Text
           fontSize={isWideVersion ? '2xl' : 'lg'}
           fontWeight={isWideVersion ? '600' : '400'}
-          align="start"
+          alignItems="start"
         >
           {caption}
         </Text>

@@ -38,7 +38,13 @@ export default function Home({ continents }: HomeProps) {
           fontWeight="normal"
           fontSize={['xl', '2xl', '3xl', '4xl', '4xl']}
           textAlign="center"
-          lineHeight={['30px', '3.375rem']}
+          lineHeight={[
+            '1.875rem',
+            '1.875rem',
+            '2.625rem',
+            '3.375rem',
+            '3.375rem',
+          ]}
         >
           Are you ready? <Divider as="br" /> Choose a continent to get started.
         </Heading>

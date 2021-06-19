@@ -1,16 +1,15 @@
 import { Box, Center, Heading, Text } from '@chakra-ui/react';
 
+import { useScreen } from '../../contexts/ScreenContext';
+
 interface BannerContinentProps {
   bannerUrl: string;
   name: string;
-  isWideVersion: boolean;
 }
 
-export function ContinentBanner({
-  bannerUrl,
-  name,
-  isWideVersion,
-}: BannerContinentProps) {
+export function ContinentBanner({ bannerUrl, name }: BannerContinentProps) {
+  const { screenMode, isWideVersion } = useScreen();
+
   return (
     <Box
       height={['150', '225', '300', '400', '400']}
@@ -26,7 +25,7 @@ export function ContinentBanner({
         paddingX={10}
         position="relative"
       >
-        {isWideVersion ? (
+        {isWideVersion || screenMode === 'tablet' ? (
           <Heading
             as="h1"
             fontWeight="600"
