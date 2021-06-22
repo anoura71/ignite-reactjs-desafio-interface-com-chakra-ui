@@ -11,7 +11,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { useColors } from '../../contexts/ColorsContext';
 import { useScreen } from '../../contexts/ScreenContext';
 import { City } from '../../types/City';
 import { CityInfo } from './CityInfo';
@@ -24,7 +23,6 @@ interface CityCardProps {
 export function CityCard({ city }: CityCardProps) {
   const { screenMode } = useScreen();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { setBackgroundColor } = useColors();
 
   let modalSize: string;
   switch (screenMode) {
