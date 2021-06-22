@@ -24,6 +24,7 @@ export function ScreenProvider({ children }: ScreenProviderProps) {
     lg: 'desktop',
     xl: 'wide',
   });
+
   const isWideVersion = screenMode === 'wide' || screenMode === 'desktop';
 
   return (

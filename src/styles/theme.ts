@@ -4,6 +4,7 @@ export const theme = extendTheme({
   colors: {
     black: '#000000',
     gray: {
+      900: '#171923', // City Info (Dark Mode)
       600: '#47585B', // Dark/Headings and Text
       500: '#999999', // Dark/Info
       400: 'rgba(153, 153, 153, 0.5)', // Dark/Info 50%

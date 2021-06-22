@@ -2,10 +2,12 @@ import { GetStaticProps } from 'next';
 
 import { Box, Center, Divider, Heading } from '@chakra-ui/react';
 
-import { Header } from '../components/Header';
-import { HomeBanner } from '../components/HomeBanner';
-import { Slider } from '../components/Slider';
-import { TravelTypes } from '../components/TravelTypes';
+import { ColorModeSwitch } from '../components/common/ColorModeSwitch';
+import { Header } from '../components/common/Header';
+import { HomeBanner } from '../components/HomePage/HomeBanner';
+import { Slider } from '../components/HomePage/Slider';
+import { TravelTypes } from '../components/HomePage/TravelTypes';
+import { useColors } from '../contexts/ColorsContext';
 import { useContinents } from '../contexts/ContinentsContext';
 import { api } from '../services/api';
 import { Continent } from '../types/Continent';
@@ -16,12 +18,15 @@ interface HomeProps {
 
 export default function Home({ continents }: HomeProps) {
   const { currentContinentId } = useContinents();
+  const { setBackgroundColor } = useColors();
 
   return (
-    <Box>
+    <Box backgroundColor={setBackgroundColor()}>
       <Header />
 
       <HomeBanner />
+
+      <ColorModeSwitch />
 
       <TravelTypes />
 

@@ -4,7 +4,7 @@ import { useScreen } from '../../contexts/ScreenContext';
 import { TravelType } from './TravelType';
 
 export function TravelTypes() {
-  const { screenMode } = useScreen();
+  const { screenMode, isWideVersion } = useScreen();
 
   const wrapValue =
     screenMode === 'wide' || screenMode === 'desktop' ? 'nowrap' : 'wrap';
@@ -14,12 +14,12 @@ export function TravelTypes() {
       maxWidth="1920"
       minWidth="375"
       marginX="auto"
-      marginTop={['20', '9']}
-      marginBottom={['20', '9']}
+      marginTop={['8', '10', '12', '20', '9']}
+      marginBottom={['8', '10', '12', '20', '9']}
     >
       <Flex
-        paddingX={['12', '10']}
-        marginBottom={['9', '20']}
+        paddingX={isWideVersion ? '10' : '12'}
+        marginBottom={isWideVersion ? '20' : '9'}
         justify="space-between"
         wrap={wrapValue}
       >

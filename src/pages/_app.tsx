@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 
 import { ChakraProvider } from '@chakra-ui/react';
 
+import { ColorsProvider } from '../contexts/ColorsContext';
 import { ContinentsProvider } from '../contexts/ContinentsContext';
 import { ScreenProvider } from '../contexts/ScreenContext';
 import { theme } from '../styles/theme';
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <ContinentsProvider currentContinentId={1}>
         <ScreenProvider>
-          <Component {...pageProps} />
+          <ColorsProvider>
+            <Component {...pageProps} />
+          </ColorsProvider>
         </ScreenProvider>
       </ContinentsProvider>
     </ChakraProvider>

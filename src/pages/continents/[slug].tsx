@@ -3,9 +3,11 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
 
 import { CityCard } from '../../components/CityCard';
-import { ContinentBanner } from '../../components/ContinentBanner';
-import { ContinentInfo } from '../../components/ContinentInfo';
-import { Header } from '../../components/Header';
+import { ColorModeSwitch } from '../../components/common/ColorModeSwitch';
+import { Header } from '../../components/common/Header';
+import { ContinentBanner } from '../../components/ContinentPage/ContinentBanner';
+import { ContinentInfo } from '../../components/ContinentPage/ContinentInfo';
+import { useColors } from '../../contexts/ColorsContext';
 import { api } from '../../services/api';
 import { Continent } from '../../types/Continent';
 
@@ -14,11 +16,15 @@ interface ContinentDetailProps {
 }
 
 export default function ContinentDetail({ continent }: ContinentDetailProps) {
+  const { setBackgroundColor } = useColors();
+
   return (
-    <Box>
+    <Box backgroundColor={setBackgroundColor()}>
       <Header hasBackButton />
 
       <ContinentBanner bannerUrl={continent.bannerUrl} name={continent.name} />
+
+      <ColorModeSwitch />
 
       <Box maxWidth="1920" height="100%" marginX="auto" paddingX={['4', '10']}>
         <ContinentInfo

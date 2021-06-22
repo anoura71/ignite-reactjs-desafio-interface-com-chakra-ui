@@ -14,6 +14,7 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 
+import { useColors } from '../../contexts/ColorsContext';
 import { useScreen } from '../../contexts/ScreenContext';
 import { City } from '../../types/City';
 
@@ -23,6 +24,7 @@ interface CityModalContentProps {
 
 export function CityModalContent({ city }: CityModalContentProps) {
   const { screenMode, isWideVersion } = useScreen();
+  const { setBackgroundColor, isDarkMode } = useColors();
 
   let rankChangeIcon = <Icon as={FiMinus} />;
   if (city.rank_change > 0) {
@@ -35,11 +37,11 @@ export function CityModalContent({ city }: CityModalContentProps) {
     <>
       <ModalOverlay />
 
-      <ModalContent>
+      <ModalContent style={{ backgroundColor: setBackgroundColor() }}>
         <ModalHeader>
           <Flex
             direction="row"
-            alignItems="start"
+            alignItems="center"
             fontFamily="Barlow"
             fontWeight="600"
           >
@@ -73,11 +75,11 @@ export function CityModalContent({ city }: CityModalContentProps) {
               </Flex>
             </Flex>
 
-            <Flex direction="column" alignItems="center" margin="auto">
+            <Flex direction="row" alignItems="center" marginX="auto">
               <Text
-                fontSize={['md', 'lg', 'xl', '2xl', '3xl']}
+                fontSize={['sm', 'md', 'lg', 'xl', '2xl']}
                 fontWeight="500"
-                color="gray.400"
+                color="gray.600"
               >
                 Rank
               </Text>
@@ -85,6 +87,7 @@ export function CityModalContent({ city }: CityModalContentProps) {
               <Text
                 fontSize={['lg', 'xl', '2xl', '3xl', '4xl']}
                 color="yellow.500"
+                marginLeft={['1', '2', '3', '4', '5']}
               >
                 {city.rank}
               </Text>
@@ -92,7 +95,11 @@ export function CityModalContent({ city }: CityModalContentProps) {
           </Flex>
         </ModalHeader>
 
-        <ModalCloseButton />
+        <ModalCloseButton
+          size={isWideVersion ? 'md' : 'sm'}
+          outline="0"
+          outlineColor="transparent"
+        />
 
         <ModalBody flexDirection="column">
           <Image
@@ -106,7 +113,7 @@ export function CityModalContent({ city }: CityModalContentProps) {
         </ModalBody>
 
         <ModalFooter
-          backgroundColor="gray.50"
+          backgroundColor={isDarkMode ? 'gray.900' : 'gray.50'}
           color="orange.500"
           width="100%"
           justifyContent="center"
@@ -118,29 +125,35 @@ export function CityModalContent({ city }: CityModalContentProps) {
             justifyContent="space-between"
             fontFamily="Barlow"
             fontWeight="500"
-            fontSize={isWideVersion ? 'md' : 'sm'}
+            fontSize={isWideVersion ? 'lg' : 'sm'}
           >
             <Flex
               direction={screenMode === 'mobile' ? 'column' : 'row'}
-              alignItems="center"
-              paddingX="2"
+              alignItems={screenMode === 'mobile' ? 'start' : 'center'}
+              paddingX={screenMode === 'mobile' ? '3' : '5'}
             >
-              <Text>Arrivals:</Text>
+              <Text>Arrivals</Text>
 
-              <Text marginLeft="1" color="gray.600">
+              <Text
+                marginLeft={screenMode === 'mobile' ? '0' : '1'}
+                color="gray.600"
+              >
                 {city.arrivals} million
               </Text>
             </Flex>
 
             <Flex
               direction={screenMode === 'mobile' ? 'column' : 'row'}
-              alignItems="center"
+              alignItems={screenMode === 'mobile' ? 'start' : 'center'}
               justifyContent="center"
-              paddingX="2"
+              paddingX={screenMode === 'mobile' ? '3' : '2'}
             >
-              <Text>Rank change:</Text>
+              <Text>Rank change</Text>
               <Flex direction="row" alignItems="center" justifyContent="center">
-                <Text marginLeft="1" color="gray.600">
+                <Text
+                  marginLeft={screenMode === 'mobile' ? '0' : '1'}
+                  color="gray.600"
+                >
                   {rankChangeIcon}
                 </Text>
 
@@ -152,12 +165,15 @@ export function CityModalContent({ city }: CityModalContentProps) {
 
             <Flex
               direction={screenMode === 'mobile' ? 'column' : 'row'}
-              alignItems="center"
-              paddingX="2"
+              alignItems={screenMode === 'mobile' ? 'start' : 'center'}
+              paddingX={screenMode === 'mobile' ? '3' : '2'}
             >
-              <Text>Growth:</Text>
+              <Text>Growth</Text>
 
-              <Text marginLeft="1" color="gray.600">
+              <Text
+                marginLeft={screenMode === 'mobile' ? '0' : '1'}
+                color="gray.600"
+              >
                 {city.growth_pct} %
               </Text>
             </Flex>

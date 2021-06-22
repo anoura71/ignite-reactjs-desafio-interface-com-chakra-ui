@@ -1,41 +1,30 @@
 import ReactCountryFlag from 'react-country-flag';
-import { FiInfo, FiChevronsUp, FiChevronsDown, FiMinus } from 'react-icons/fi';
 
 import {
   Box,
   Flex,
   Heading,
-  Icon,
   Image,
   Link as ChakraLink,
   Modal,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverBody,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
 
+import { useColors } from '../../contexts/ColorsContext';
 import { useScreen } from '../../contexts/ScreenContext';
 import { City } from '../../types/City';
-import { CityModalContent } from '../CityModalContent';
+import { CityInfo } from './CityInfo';
+import { CityModalContent } from './CityModalContent';
 
 interface CityCardProps {
   city: City;
 }
 
 export function CityCard({ city }: CityCardProps) {
-  const { isWideVersion, screenMode } = useScreen();
+  const { screenMode } = useScreen();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  let rankChangeIcon = <Icon as={FiMinus} />;
-  if (city.rank_change > 0) {
-    rankChangeIcon = <Icon as={FiChevronsUp} />;
-  } else if (city.rank_change < 0) {
-    rankChangeIcon = <Icon as={FiChevronsDown} />;
-  }
+  const { setBackgroundColor } = useColors();
 
   let modalSize: string;
   switch (screenMode) {
@@ -93,58 +82,7 @@ export function CityCard({ city }: CityCardProps) {
               {city.cityName}
             </Heading>
 
-            <Popover trigger="hover">
-              <PopoverTrigger>
-                <span>
-                  <Icon
-                    as={FiInfo}
-                    fontSize={isWideVersion ? 'md' : 'sm'}
-                    opacity="0.5"
-                    marginLeft="5px"
-                    marginBottom={2}
-                  />
-                </span>
-              </PopoverTrigger>
-
-              <PopoverContent backgroundColor="gray.50" color="orange.500">
-                <PopoverArrow />
-
-                <PopoverBody
-                  flexDirection="column"
-                  fontFamily="Barlow"
-                  fontWeight="500"
-                  fontSize={isWideVersion ? 'md' : 'sm'}
-                >
-                  <Flex direction="row" alignItems="center">
-                    <Text>Arrivals:</Text>
-
-                    <Text marginLeft="1" color="gray.600">
-                      {city.arrivals} million
-                    </Text>
-                  </Flex>
-
-                  <Flex direction="row" alignItems="center">
-                    <Text>Rank change:</Text>
-
-                    <Text marginLeft="1" color="gray.600">
-                      {rankChangeIcon}
-                    </Text>
-
-                    <Text color="gray.600">
-                      {city.rank_change !== 0 && Math.abs(city.rank_change)}
-                    </Text>
-                  </Flex>
-
-                  <Flex direction="row" alignItems="center">
-                    <Text>Growth:</Text>
-
-                    <Text marginLeft="1" color="gray.600">
-                      {city.growth_pct} %
-                    </Text>
-                  </Flex>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+            <CityInfo city={city} />
           </Flex>
 
           <Text
