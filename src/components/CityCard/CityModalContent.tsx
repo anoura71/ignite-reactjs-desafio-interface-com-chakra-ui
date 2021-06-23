@@ -24,7 +24,7 @@ interface CityModalContentProps {
 
 export function CityModalContent({ city }: CityModalContentProps) {
   const { screenMode, isWideVersion } = useScreen();
-  const { setBackgroundColor, isDarkMode } = useColors();
+  const { backgroundColor, isDarkMode } = useColors();
 
   let rankChangeIcon = <Icon as={FiMinus} />;
   if (city.rank_change > 0) {
@@ -37,7 +37,7 @@ export function CityModalContent({ city }: CityModalContentProps) {
     <>
       <ModalOverlay />
 
-      <ModalContent style={{ backgroundColor: setBackgroundColor() }}>
+      <ModalContent style={{ backgroundColor }}>
         <ModalHeader>
           <Flex
             direction="row"

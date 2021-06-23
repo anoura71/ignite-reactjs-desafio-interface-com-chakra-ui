@@ -1,13 +1,18 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect } from 'react';
 
-import { Box, Heading, SimpleGrid } from '@chakra-ui/react';
+import { Box, Flex, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 
 import { CityCard } from '../../components/CityCard';
 import { ColorModeSwitch } from '../../components/common/ColorModeSwitch';
 import { Header } from '../../components/common/Header';
+import { CitySortOrderSwitch } from '../../components/ContinentPage/CitySortOrderSwitch';
+import { CitySortSelector } from '../../components/ContinentPage/CitySortSelector';
 import { ContinentBanner } from '../../components/ContinentPage/ContinentBanner';
 import { ContinentInfo } from '../../components/ContinentPage/ContinentInfo';
 import { useColors } from '../../contexts/ColorsContext';
+import { useContinents } from '../../contexts/ContinentsContext';
+import { useScreen } from '../../contexts/ScreenContext';
 import { api } from '../../services/api';
 import { Continent } from '../../types/Continent';
 
@@ -15,11 +20,17 @@ interface ContinentDetailProps {
   continent: Continent;
 }
 
-export default function ContinentDetail({ continent }: ContinentDetailProps) {
-  const { setBackgroundColor } = useColors();
+export default function ContinentPage({ continent }: ContinentDetailProps) {
+  const { screenMode } = useScreen();
+  const { backgroundColor } = useColors();
+  const { cities, setCities } = useContinents();
+
+  useEffect(() => {
+    setCities(continent.cities);
+  }, [continent.cities, setCities]);
 
   return (
-    <Box backgroundColor={setBackgroundColor()}>
+    <Box backgroundColor={backgroundColor}>
       <Header hasBackButton />
 
       <ContinentBanner bannerUrl={continent.bannerUrl} name={continent.name} />
@@ -31,25 +42,57 @@ export default function ContinentDetail({ continent }: ContinentDetailProps) {
           description={continent.description}
           countries={continent.total_countries}
           languages={continent.total_languages}
-          cities={continent.cities.length}
+          cities={cities.length}
         />
 
         <Box>
-          <Heading
-            as="h1"
-            fontWeight="500"
-            fontSize={['2xl', '4xl']}
-            color="gray.600"
+          <Stack
+            direction="row"
+            spacing="auto"
+            alignItems={screenMode === 'mobile' ? 'start' : 'center'}
           >
-            Cities +100
-          </Heading>
+            <Heading
+              as="h1"
+              fontWeight="500"
+              fontSize={['2xl', '2xl', '3xl', '4xl', '4xl']}
+              color="gray.600"
+            >
+              Cities +100
+            </Heading>
+
+            <Flex direction="row" alignItems="center" justifyContent="center">
+              {screenMode !== 'mobile' && (
+                <Text
+                  fontSize={['md', 'md', 'lg', 'xl', 'xl']}
+                  // color="yellow.500"
+                  paddingRight="4"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  Order
+                </Text>
+              )}
+
+              <Flex
+                direction={screenMode === 'mobile' ? 'column' : 'row'}
+                alignItems={screenMode === 'mobile' ? 'flex-start' : 'flex-end'}
+                justifyContent="center"
+                marginY="auto"
+              >
+                <CitySortSelector />
+
+                <CitySortOrderSwitch />
+              </Flex>
+            </Flex>
+          </Stack>
 
           <SimpleGrid
             columns={[1, 2, 3, 4, 5]}
             spacing={[5, 6, 8, 10, 12]}
             marginY={['5', '5', '32px', '45px', '45px']}
+            paddingBottom="5"
           >
-            {continent.cities.map((city) => (
+            {cities.map((city) => (
               <CityCard key={city.id} city={city} />
             ))}
           </SimpleGrid>

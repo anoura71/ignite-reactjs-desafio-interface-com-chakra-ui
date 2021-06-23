@@ -16,12 +16,12 @@ interface HomeProps {
   continents: Continent[];
 }
 
-export default function Home({ continents }: HomeProps) {
+export default function HomePage({ continents }: HomeProps) {
   const { currentContinentId } = useContinents();
-  const { setBackgroundColor } = useColors();
+  const { backgroundColor } = useColors();
 
   return (
-    <Box backgroundColor={setBackgroundColor()}>
+    <Box backgroundColor={backgroundColor}>
       <Header />
 
       <HomeBanner />

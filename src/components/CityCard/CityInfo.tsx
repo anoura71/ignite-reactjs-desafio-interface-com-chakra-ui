@@ -8,6 +8,7 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
+  Stack,
   Text,
 } from '@chakra-ui/react';
 
@@ -51,38 +52,59 @@ export function CityInfo({ city }: CityInfoProps) {
         <PopoverArrow />
 
         <PopoverBody
-          flexDirection="column"
+          flexDirection="row"
           fontFamily="Barlow"
           fontWeight="500"
           fontSize={isWideVersion ? 'md' : 'sm'}
         >
-          <Flex direction="row" alignItems="center">
-            <Text>Arrivals</Text>
+          <Stack direction="row" spacing="auto">
+            <Flex direction="column">
+              <Flex direction="row" alignItems="center">
+                <Text>Arrivals</Text>
 
-            <Text marginLeft="1" color={isDarkMode ? 'gray.50' : 'gray.600'}>
-              {city.arrivals} million
-            </Text>
-          </Flex>
+                <Text
+                  marginLeft="1"
+                  color={isDarkMode ? 'gray.50' : 'gray.600'}
+                >
+                  {city.arrivals} million
+                </Text>
+              </Flex>
 
-          <Flex direction="row" alignItems="center">
-            <Text>Rank change</Text>
+              <Flex direction="row" alignItems="center">
+                <Text>Rank change</Text>
 
-            <Text marginLeft="1" color={isDarkMode ? 'gray.50' : 'gray.600'}>
-              {rankChangeIcon}
-            </Text>
+                <Text
+                  marginLeft="1"
+                  color={isDarkMode ? 'gray.50' : 'gray.600'}
+                >
+                  {rankChangeIcon}
+                </Text>
 
-            <Text color={isDarkMode ? 'gray.50' : 'gray.600'}>
-              {city.rank_change !== 0 && Math.abs(city.rank_change)}
-            </Text>
-          </Flex>
+                <Text color={isDarkMode ? 'gray.50' : 'gray.600'}>
+                  {city.rank_change !== 0 && Math.abs(city.rank_change)}
+                </Text>
+              </Flex>
 
-          <Flex direction="row" alignItems="center">
-            <Text>Growth</Text>
+              <Flex direction="row" alignItems="center">
+                <Text>Growth</Text>
 
-            <Text marginLeft="1" color={isDarkMode ? 'gray.50' : 'gray.600'}>
-              {city.growth_pct} %
-            </Text>
-          </Flex>
+                <Text
+                  marginLeft="1"
+                  color={isDarkMode ? 'gray.50' : 'gray.600'}
+                >
+                  {city.growth_pct} %
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Flex direction="row" alignItems="center" paddingRight="2">
+              <Text color={isDarkMode ? 'gray.50' : 'gray.600'}>Rank</Text>
+
+              <Text marginLeft="1" fontSize="xl">
+                {city.rank}
+              </Text>
+            </Flex>
+          </Stack>
         </PopoverBody>
       </PopoverContent>
     </Popover>

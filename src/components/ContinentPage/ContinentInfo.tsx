@@ -38,8 +38,9 @@ export function ContinentInfo({
 
       <Stack
         direction={screenMode === 'desktop' ? 'column' : 'row'}
-        spacing={10}
+        spacing={screenMode === 'desktop' ? 3 : 10}
         marginTop={['4', '3', '2', '1', '0']}
+        marginBottom={screenMode === 'desktop' ? '10' : '0'}
         alignItems={screenMode === 'desktop' ? 'center' : 'start'}
         paddingX="10"
       >

@@ -37,6 +37,7 @@ export function ColorModeSwitch() {
         colorScheme="yellow"
         onChange={toggleColorMode}
         isChecked={isDarkMode}
+        paddingLeft={['1', '2', '3', '4', '5']}
       />
     </Stack>
   );
