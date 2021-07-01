@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Box, Flex, Heading, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 
 import { CityCard } from '../../components/CityCard';
-import { ColorModeSwitch } from '../../components/common/ColorModeSwitch';
 import { Header } from '../../components/common/Header';
 import { CitySortOrderSwitch } from '../../components/ContinentPage/CitySortOrderSwitch';
 import { CitySortSelector } from '../../components/ContinentPage/CitySortSelector';
@@ -35,8 +34,6 @@ export default function ContinentPage({ continent }: ContinentDetailProps) {
 
       <ContinentBanner bannerUrl={continent.bannerUrl} name={continent.name} />
 
-      <ColorModeSwitch />
-
       <Box maxWidth="1920" height="100%" marginX="auto" paddingX={['4', '10']}>
         <ContinentInfo
           description={continent.description}
@@ -47,7 +44,7 @@ export default function ContinentPage({ continent }: ContinentDetailProps) {
 
         <Box>
           <Stack
-            direction="row"
+            direction={screenMode === 'mobile' ? 'column' : 'row'}
             spacing="auto"
             alignItems={screenMode === 'mobile' ? 'start' : 'center'}
           >
@@ -60,29 +57,32 @@ export default function ContinentPage({ continent }: ContinentDetailProps) {
               Cities +100
             </Heading>
 
-            <Flex direction="row" alignItems="center" justifyContent="center">
-              {screenMode !== 'mobile' && (
-                <Text
-                  fontSize={['md', 'md', 'lg', 'xl', 'xl']}
-                  // color="yellow.500"
-                  paddingRight="4"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  Order
-                </Text>
-              )}
-
-              <Flex
-                direction={screenMode === 'mobile' ? 'column' : 'row'}
-                alignItems={screenMode === 'mobile' ? 'flex-start' : 'flex-end'}
+            <Flex
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+              paddingTop={screenMode === 'mobile' ? '2' : '0'}
+            >
+              <Text
+                fontSize={['md', 'md', 'lg', 'xl', 'xl']}
+                // color="yellow.500"
+                paddingRight="4"
+                alignItems="center"
                 justifyContent="center"
-                marginY="auto"
+              >
+                Order
+              </Text>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                marginRight="auto"
               >
                 <CitySortSelector />
 
                 <CitySortOrderSwitch />
-              </Flex>
+              </Stack>
             </Flex>
           </Stack>
 

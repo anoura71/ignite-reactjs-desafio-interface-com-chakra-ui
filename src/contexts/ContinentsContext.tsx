@@ -9,6 +9,7 @@ import {
 import { api } from '../services/api';
 import { City } from '../types/City';
 // import { dynamicSort } from '../utils/utils';
+// import { quickSort } from '../utils/utils';
 
 interface ContinentsContextData {
   currentContinentId?: number;
@@ -53,16 +54,22 @@ export function ContinentsProvider({
         setCities(response.data);
 
         // setCities(cities.sort(dynamicSort(citySortOrder)));
+        // setCities(quickSort(cities, citySortOrder));
       }
     }
 
     sortCities();
   }, [citySortOrder, currentContinentId, isDescending]);
   // }, [citySortOrder, cities]);
+  // }, [citySortOrder, cities, isDescending]);
 
   /** Store the id of the active continent in the slider. */
   async function handleSelectContinent(id: number) {
     setCurrentContinentId(id);
+
+    // Reset the city sort order
+    setCitySortOrder('');
+    setDescending(false);
 
     // Get the cities of the selected continent, using the API
     const response = await api.get(`/cities?continentId=${id}`);

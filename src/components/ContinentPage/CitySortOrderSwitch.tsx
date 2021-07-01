@@ -1,4 +1,4 @@
-import { Stack, Switch, Text } from '@chakra-ui/react';
+import { Flex, Switch, Text } from '@chakra-ui/react';
 
 import { useContinents } from '../../contexts/ContinentsContext';
 import { useScreen } from '../../contexts/ScreenContext';
@@ -23,7 +23,7 @@ export function CitySortOrderSwitch() {
   }
 
   return (
-    <Stack
+    <Flex
       direction="row"
       alignItems="center"
       justifyContent="center"
@@ -35,13 +35,13 @@ export function CitySortOrderSwitch() {
         colorScheme="yellow"
         onChange={toggleDescending}
         isChecked={isDescending}
-        paddingLeft={['1', '2', '3', '4', '5']}
+        paddingX={['1', '2', '3', '4', '5']}
       />
 
       <Text fontSize={['sm', 'md', 'lg', 'xl', '2xl']}>
         {
           {
-            mobile: isDescending ? 'Descending' : 'Ascending',
+            mobile: isDescending ? 'Desc' : 'Asc',
             phablet: isDescending ? 'Desc' : 'Asc',
             tablet: isDescending ? 'Desc' : 'Asc',
             desktop: isDescending ? 'Descending' : 'Ascending',
@@ -49,6 +49,6 @@ export function CitySortOrderSwitch() {
           }[screenMode]
         }
       </Text>
-    </Stack>
+    </Flex>
   );
 }

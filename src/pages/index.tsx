@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 
 import { Box, Center, Divider, Heading } from '@chakra-ui/react';
 
-import { ColorModeSwitch } from '../components/common/ColorModeSwitch';
 import { Header } from '../components/common/Header';
 import { HomeBanner } from '../components/HomePage/HomeBanner';
 import { Slider } from '../components/HomePage/Slider';
@@ -25,8 +24,6 @@ export default function HomePage({ continents }: HomeProps) {
       <Header />
 
       <HomeBanner />
-
-      <ColorModeSwitch />
 
       <TravelTypes />
 

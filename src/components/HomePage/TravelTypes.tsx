@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 
 import { useScreen } from '../../contexts/ScreenContext';
-import { TravelType } from './TravelType';
+import { TravelTypeItem } from './TravelTypeItem';
 
 export function TravelTypes() {
   const { screenMode, isWideVersion } = useScreen();
@@ -23,27 +23,27 @@ export function TravelTypes() {
         justify="space-between"
         wrap={wrapValue}
       >
-        <TravelType
+        <TravelTypeItem
           imageSrc="/assets/cocktail.svg"
           alt="Nightlife"
           text="nightlife"
         />
 
-        <TravelType imageSrc="/assets/surf.svg" alt="Beaches" text="beaches" />
+        <TravelTypeItem imageSrc="/assets/surf.svg" alt="Beaches" text="beaches" />
 
-        <TravelType
+        <TravelTypeItem
           imageSrc="/assets/building.svg"
           alt="Modern"
           text="modern"
         />
 
-        <TravelType
+        <TravelTypeItem
           imageSrc="/assets/museum.svg"
           alt="Classical"
           text="classical"
         />
 
-        <TravelType
+        <TravelTypeItem
           imageSrc="/assets/earth.svg"
           alt="More"
           text="and more..."

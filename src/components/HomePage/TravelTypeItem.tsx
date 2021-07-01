@@ -11,7 +11,7 @@ interface TravelTypeProps {
   isLastChild?: boolean;
 }
 
-export function TravelType({
+export function TravelTypeItem({
   text,
   imageSrc,
   alt,
