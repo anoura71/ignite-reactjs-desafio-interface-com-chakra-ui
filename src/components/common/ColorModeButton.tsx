@@ -29,7 +29,7 @@ export function ColorModeButton() {
       size={buttonSize}
       aria-label="Toggle color mode"
       onClick={toggleColorMode}
-      icon={isDarkMode ? <FiMoon /> : <FiSun />}
+      icon={isDarkMode ? <FiSun /> : <FiMoon />}
       backgroundColor={backgroundColor}
       _hover={{ style: { backgroundColor } }}
       alignItems="center"

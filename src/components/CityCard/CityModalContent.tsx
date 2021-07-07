@@ -55,6 +55,7 @@ export function CityModalContent({ city }: CityModalContentProps) {
                   marginRight: '10px',
                 }}
                 aria-label={city.countryName}
+                title={city.countryName}
                 countryCode={city.countryCode}
                 svg
               />

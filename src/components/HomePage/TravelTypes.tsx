@@ -29,7 +29,11 @@ export function TravelTypes() {
           text="nightlife"
         />
 
-        <TravelTypeItem imageSrc="/assets/surf.svg" alt="Beaches" text="beaches" />
+        <TravelTypeItem
+          imageSrc="/assets/surf.svg"
+          alt="Beaches"
+          text="beaches"
+        />
 
         <TravelTypeItem
           imageSrc="/assets/building.svg"

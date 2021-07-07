@@ -101,6 +101,7 @@ export function CityCard({ city }: CityCardProps) {
             objectFit: 'cover',
           }}
           aria-label={city.countryName}
+          title={city.countryName}
           countryCode={city.countryCode}
           svg
         />
