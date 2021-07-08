@@ -53,6 +53,7 @@ npm run dev
 
 ## Technologies
 
+- [ReactJS](https://reactjs.org/)
 - [Chakra UI](https://chakra-ui.com)
 - [JSON Server](https://github.com/typicode/json-server)
 - [Next.js](https://nextjs.org)
